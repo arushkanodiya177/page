@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PureSpace Cleaning | Spotless spaces, every time</title>
+  <!-- Font Awesome 6 (free) for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- BRAND COLOUR GUIDE (exact) ---------- */
+    :root {
+      --primary: #1B7F79;        /* Deep teal — trust, clean */
+      --secondary: #F4F9F9;      /* Soft cloud white — background */
+      --accent: #F5B342;         /* Golden sunshine — highlights */
+      --dark: #1E2B2A;           /* Charcoal green — text */
+      --light-text: #FFFFFF;
+      --gray-soft: #E2EDEB;
+      --shadow: 0 12px 30px rgba(0, 30, 20, 0.06);
+      --radius: 28px;
+      --radius-sm: 18px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--secondary);
+      color: var(--dark);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* ---------- TYPOGRAPHY ---------- */
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.2rem);
+      color: var(--dark);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #3E5B58;
+      max-width: 650px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ---------- BUTTONS & LINKS ---------- */
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--light-text);
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid transparent;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 12px rgba(27, 127, 121, 0.2);
+    }
+
+    .btn:hover {
+      background-color: #13635e;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(27, 127, 121, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: var(--dark);
+      box-shadow: 0 4px 12px rgba(245, 179, 66, 0.3);
+    }
+
+    .btn-accent:hover {
+      background-color: #e6a42e;
+      color: var(--dark);
+    }
+
+    /* ---------- HEADER / NAV ---------- */
+    header {
+      padding: 1.5rem 0;
+      position: sticky;
+      top: 0;
+      background-color: rgba(244, 249, 249, 0.92);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid var(--gray-soft);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+    }
+
+    .logo i {
+      color: var(--accent);
+      font-size: 2rem;
+    }
+
+    .logo span {
+      color: var(--dark);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      font-weight: 500;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      transition: color 0.2s;
+      font-size: 1.05rem;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      padding: 3.5rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background-color: rgba(27, 127, 121, 0.1);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 0.35rem 1.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-tagline {
+      font-size: 1.35rem;
+      color: #3E5B58;
+      margin: 1rem 0 1.8rem;
+      max-width: 550px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin: 2.5rem 0 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #52716e;
+      font-weight: 500;
+    }
+
+    .hero-image {
+      background: linear-gradient(145deg, var(--primary) 0%, #2a9d94 100%);
+      border-radius: var(--radius);
+      padding: 1.8rem 2rem 1.8rem 2rem;
+      color: white;
+      box-shadow: var(--shadow);
+      transform: rotate(1deg);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-image:hover {
+      transform: rotate(0deg) scale(1.01);
+    }
+
+    .hero-image i {
+      font-size: 3.5rem;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-image blockquote {
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.4;
+      font-style: normal;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-image .author {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about {
+      padding: 4rem 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 1.15rem;
+      color: #2a403d;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, rgba(245, 179, 66, 0.15) 0%, rgba(245, 179, 66, 0.15) 100%);
+      padding: 0.2rem 0.3rem;
+      border-radius: 6px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .about-visual {
+      background-color: white;
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--gray-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+
+    .about-visual .fa-check-circle {
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+
+    .selling-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .selling-item p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ---------- SERVICES ---------- */
+    .services {
+      padding: 5rem 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    .service-card {
+      background: white;
+      padding: 2rem 1.8rem;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--gray-soft);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(27, 127, 121, 0.15);
+      border-color: var(--primary);
+    }
+
+    .service-icon {
+      background: rgba(27, 127, 121, 0.08);
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .service-icon i {
+      font-size: 1.9rem;
+      color: var(--primary);
+    }
+
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      color: #3a5754;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .service-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: var(--secondary);
+      padding: 0.25rem 0.8rem;
+      border-radius: 30px;
+      letter-spacing: 0.2px;
+    }
+
+    /* ---------- AREA / LOCATION ---------- */
+    .area {
+      padding: 3rem 0 4rem;
+    }
+
+    .area-card {
+      background-color: white;
+      border-radius: var(--radius);
+      padding: 2.5rem 2.8rem;
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border-left: 8px solid var(--accent);
+    }
+
+    .area-text h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .area-text p {
+      font-size: 1.15rem;
+      color: #2a403d;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .area-text i {
+      color: var(--primary);
+    }
+
+    .area-postcodes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+
+    .postcode-pill {
+      background: var(--secondary);
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-weight: 500;
+      color: var(--dark);
+      border: 1px solid var(--gray-soft);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- CTA BANNER ---------- */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, #1f938a 100%);
+      border-radius: var(--radius);
+      padding: 3.5rem 3rem;
+      text-align: center;
+      color: white;
+      margin: 3rem 0 5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-banner h2 {
+      color: white;
+      margin-bottom: 0.8rem;
+      font-size: 2.4rem;
+    }
+
+    .cta-banner p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+    }
+
+    .cta-banner .btn-accent {
+      background-color: var(--accent);
+      color: var(--dark);
+      font-size: 1.1rem;
+      padding: 1rem 2.8rem;
+    }
+
+    .cta-banner .btn-accent:hover {
+      background-color: #f7c56a;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      padding: 2rem 0 1.5rem;
+      border-top: 1px solid var(--gray-soft);
+      color: #3a5754;
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .footer-logo i {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-image {
+        transform: rotate(0);
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.2rem;
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        gap: 1.2rem;
+        font-size: 0.95rem;
+        margin-top: 0.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .area-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cta-banner {
+        padding: 2.5rem 1.5rem;
+      }
+
+      .cta-banner h2 {
+        font-size: 1.9rem;
+      }
+
+      .hero-stats {
+        gap: 1.5rem;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero {
+        padding: 2rem 0;
+      }
+
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* utility */
+    .text-center {
+      text-align: center;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <i class="fas fa-spray-can-sparkles"></i>
+        <span>PureSpace</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#area">Service Area</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge"><i class="fas fa-star" style="margin-right: 6px;"></i> Trusted since 2010</div>
+          <h1>Spotless spaces,<br>every time.</h1>
+          <p class="hero-tagline">Residential & commercial cleaning with a personal touch. We bring the shine — you enjoy the calm.</p>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">14+</span>
+              <span class="stat-label">Years in business</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2.3k</span>
+              <span class="stat-label">Happy clients</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Eco-friendly</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn">Get a free quote →</a>
+          <a href="#services" class="btn btn-outline" style="margin-left: 0.8rem;">Explore services</a>
+        </div>
+        <div class="hero-image">
+          <i class="fas fa-leaf"></i>
+          <blockquote>“PureSpace transformed our office — every corner shines, and the team is always a pleasure to work with.”</blockquote>
+          <div class="author">
+            <i class="fas fa-user-circle"></i> — Laura M., Office Manager
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (with selling points) -->
+    <section id="about" class="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2>Clean spaces. Better days.</h2>
+          <p><span class="highlight">PureSpace Cleaning</span> is a local, family-run company serving homes and businesses for over 14 years. We combine detail-oriented cleaning with eco-friendly products, so your space isn’t just clean — it’s healthier.</p>
+          <p>What makes us different? <strong>Insured, bonded, and background-checked</strong> professionals who treat your space with respect. We show up on time, communicate clearly, and guarantee your satisfaction.</p>
+          <p style="font-size: 1.15rem; margin-top: 1.5rem;"><i class="fas fa-map-pin" style="color: var(--primary); margin-right: 10px;"></i> Proudly serving Bristol and surrounding areas.</p>
+        </div>
+        <div class="about-visual">
+          <div class="selling-item">
+            <i class="fas fa-check-circle"></i>
+            <p>Fully insured & bonded for your peace of mind</p>
+          </div>
+          <div class="selling-item">
+            <i class="fas fa-check-circle"></i>
+            <p>Eco-friendly, child & pet-safe cleaning products</p>
+          </div>
+          <div class="selling-item">
+            <i class="fas fa-check-circle"></i>
+            <p>Vetted, trained & friendly cleaning professionals</p>
+          </div>
+          <div class="selling-item">
+            <i class="fas fa-check-circle"></i>
+            <p>100% satisfaction guarantee — we re-clean if needed</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2>Everything you need, spotless.</h2>
+        <p class="section-subtitle">From regular home care to post-construction clean-ups — we’ve got the right service for you.</p>
+        <div class="services-grid">
+          <!-- 1. Regular house cleaning -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-home"></i></div>
+            <h3>Regular house cleaning</h3>
+            <p>Weekly or fortnightly cleans that keep your home fresh and tidy. We tailor every visit to your routine.</p>
+            <span class="service-tag">Most popular</span>
+          </div>
+          <!-- 2. Deep cleaning -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-broom"></i></div>
+            <h3>Deep cleaning</h3>
+            <p>Top-to-bottom detailed clean — perfect for spring cleaning, special occasions or first-time service.</p>
+            <span class="service-tag">Detail-focused</span>
+          </div>
+          <!-- 3. Move-in / move-out -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-truck-moving"></i></div>
+            <h3>Move-in / move-out cleaning</h3>
+            <p>Stress-free moving. We leave the place sparkling so you can settle in (or get your deposit back).</p>
+            <span class="service-tag">End-of-tenancy</span>
+          </div>
+          <!-- 4. Office / commercial -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-building"></i></div>
+            <h3>Office / commercial cleaning</h3>
+            <p>Flexible cleaning for offices, retail and clinics. Maintain a professional, healthy workspace.</p>
+            <span class="service-tag">Business</span>
+          </div>
+          <!-- 5. Post-construction -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-hard-hat"></i></div>
+            <h3>Post-construction cleaning</h3>
+            <p>Dust, debris, and paint splatter removed. We make your newly built or renovated space move-in ready.</p>
+            <span class="service-tag">Specialist</span>
+          </div>
+          <!-- 6. Add-ons -->
+          <div class="service-card">
+            <div class="service-icon"><i class="fas fa-window-maximize"></i></div>
+            <h3>Windows, carpets & upholstery</h3>
+            <p>Add-on services to refresh the details: interior windows, carpet steam cleaning, sofa & chair shampoo.</p>
+            <span class="service-tag">Add-ons</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICE AREA -->
+    <section id="area" class="area">
+      <div class="container">
+        <div class="area-card">
+          <div class="area-text">
+            <h2><i class="fas fa-map-marker-alt" style="color: var(--accent); margin-right: 10px;"></i> Service area</h2>
+            <p><i class="fas fa-location-dot"></i> Bristol & surrounding areas — we’re just around the corner.</p>
+            <div class="area-postcodes">
+              <span class="postcode-pill">BS1</span>
+              <span class="postcode-pill">BS2</span>
+              <span class="postcode-pill">BS3</span>
+              <span class="postcode-pill">BS4</span>
+              <span class="postcode-pill">BS5</span>
+              <span class="postcode-pill">BS6</span>
+              <span class="postcode-pill">BS7</span>
+              <span class="postcode-pill">BS8</span>
+              <span class="postcode-pill">BS9</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn btn-outline" style="white-space: nowrap;">Check your postcode →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="cta-banner">
+          <h2>Ready for a spotless space?</h2>
+          <p>Get a free, no-obligation quote within 2 hours. Let’s make your place shine.</p>
+          <a href="#" class="btn btn-accent" onclick="alert('Demo: this would open a contact form or email.'); return false;">
+            <i class="fas fa-envelope" style="margin-right: 8px;"></i> Request a quote
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <i class="fas fa-spray-can-sparkles"></i> PureSpace Cleaning
+      </div>
+      <div>© 2026 PureSpace Cleaning — Bristol, UK</div>
+      <div>
+        <i class="fas fa-phone-alt"></i> 0117 123 4567 &nbsp;|&nbsp;
+        <i class="fas fa-envelope"></i> hello@purespace.co.uk
+      </div>
+    </div>
+  </footer>
+
+  <!-- tiny script for demo – no extra functionality needed -->
+</body>
+</html>
